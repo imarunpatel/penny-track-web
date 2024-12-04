@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+}
+
+input, select, textarea {
+    outline: none;
+}
+
+textarea:focus {
+    outline: none;
+}
+
+.add-update-expense {
+    .react-datepicker-popper {
+        left: unset !important;
+        right: 0 !important;
+    }
+}
+.add-update-expense {
+    .react-datepicker-popper {
+        left: unset !important;
+        right: 0 !important;
+    }
+}
+.home-date-picker-container {
+    .react-datepicker-popper {
+        left: unset !important;
+        right: -60px !important;
+    }
+}
+
+.horizontal-date-picker {
+    scrollbar-width: none; /* For Firefox */
+    -ms-overflow-style: none; /* For Internet Explorer and Edge */
+}
+.horizontal-date-picker::-webkit-scrollbar {
+    display: none; /* For Chrome, Safari, and Opera */
+  }
