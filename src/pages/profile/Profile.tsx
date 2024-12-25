@@ -15,6 +15,7 @@ const Profile = () => {
             navigation('/login');
         }
     }
+    
   return (
     <div className='page-container'>
         <div className='max-w-lg mx-auto min-h-screen'>

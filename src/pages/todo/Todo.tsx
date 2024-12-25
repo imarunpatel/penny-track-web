@@ -2,7 +2,7 @@ import { ListBulletIcon } from "@heroicons/react/24/outline"
 
 const Todo = () => {
   return (
-    <div>
+    <div className="max-w-lg mx-auto min-h-screen">
         <header className="flex px-3 py-3 gap-2 bg-violet-200 h-16 items-center">
             <ListBulletIcon width={20} />
             <div>Todos</div>
