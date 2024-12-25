@@ -17,6 +17,7 @@ interface ExpenseStoreState {
     addStats: (payload: IMonthlyStats) => void;
     updateBudget: (yearMonth: string, budget: number) => void;
     deleteExpense: (expense: IExpense) => void;
+    clearExpense: () => void;
 }
 
 
@@ -134,7 +135,8 @@ const useExpenseStore = create<ExpenseStoreState>((set) => ({
         if(filteredExpense)
             expenses.set(expense.date, filteredExpense);
         return { expenses, stats: updateStats }
-    })
+    }),
+    clearExpense: () => set({expenses: null, stats: null})
 }))
 
 

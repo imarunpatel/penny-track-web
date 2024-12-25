@@ -10,12 +10,14 @@ import toast from "react-simple-toasts";
 import HorizontalLoader from "../../components/HorizontalLoader";
 import { useState } from "react";
 import AddCategory from "./components/AddCategory";
+import { useMonthlyExpense } from "../../hooks/useMonthlyExpense";
+import { formateToYearMonth } from "../../utils/helpers/dateFormate";
 
 const Category = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const { categories, deleteCategory } = useCategoryStore();
   const [isOpen, setIsOpen] = useState<boolean>(false);
-
+  const { getMonthlyExpense } = useMonthlyExpense();
 
   const handleDelete = async (id: string) => {
     const consent = confirm('Are you sure you want to delete?');
@@ -26,6 +28,7 @@ const Category = () => {
         if(response.success) {
             toast('Deleted successfully');
             deleteCategory(id);
+            getMonthlyExpense(formateToYearMonth(new Date()))
         }
     } catch (e) {
 

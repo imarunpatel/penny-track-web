@@ -36,28 +36,16 @@ interface BottomSheetProps {
   categories: ICategory[] | null;
 }
 
-const AddUpdateExpense = ({
-  isOpen,
-  setIsOpen,
-  categories,
-  type,
-  expense,
-}: BottomSheetProps) => {
+const AddUpdateExpense = ({ isOpen, setIsOpen, categories, type, expense }: BottomSheetProps) => {
   const navigate = useNavigate();
   const { addExpense, updateExpense } = useExpenseStore();
   const [formData, setFormData] = useState<FormData>(initialState);
-  const [formError, setFormError] = useState({
-    title: false,
-    amount: false,
-    date: false,
-    categoryId: false,
-  });
+  const [formError, setFormError] = useState({ title: false, amount: false, date: false, categoryId: false });
   // const [modifiedCategory, setModifiedCategory] = useState<{ key: string; value: string }[]>([])
   const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
   const [loading, setLoading] = useState(false);
 
-  const modifiedCategory: { key: string; value: string }[] = 
-    categories?.map((item) => ({ key: item.id, value: item.name })) || [];
+  const modifiedCategory: { key: string; value: string }[] = categories?.map((item) => ({ key: item.id, value: item.name })) || [];
 
   useEffect(() => {
     if (type === "Update") {
@@ -65,7 +53,7 @@ const AddUpdateExpense = ({
         const initialFormValue: FormData = {
           amount: expense?.amount,
           title: expense?.title,
-          categoryId: expense?.categoryId.id,
+          categoryId: expense?.categoryId ? expense?.categoryId.id : '',
           date: new Date(expense.date),
           description: expense.description,
         };
@@ -145,15 +133,14 @@ const AddUpdateExpense = ({
         setLoading(false);
       }
     } else {
-      console.log("error", formData);
     }
   };
 
   const addCategory = () => {
-    navigate('/category')
+    navigate("/category");
     setIsOpen(false);
     // setModifiedCategory(categories?.map((item) => ({ key: item.id, value: item.name })) || [])
-  }
+  };
 
   const validateExpenseForm = (formData: FormData): boolean => {
     const newErrors = {
@@ -273,8 +260,15 @@ const AddUpdateExpense = ({
               </div>
             ) : (
               <div className=" h-full w-full flex flex-col gap-2 justify-center items-center">
-                <p className="text-gray-400 text-sm">Create category to start adding expenses</p>
-                <Button onClick={addCategory} label="Add Cateogry" size="small" fullWidth={false} />
+                <p className="text-gray-400 text-sm">
+                  Create category to start adding expenses
+                </p>
+                <Button
+                  onClick={addCategory}
+                  label="Add Cateogry"
+                  size="small"
+                  fullWidth={false}
+                />
               </div>
             )}
           </div>

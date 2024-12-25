@@ -67,10 +67,14 @@ const Dropdown: React.FC<Props> = (props) => {
               {open && 
               <div className={`w-full bg-white rounded-md absolute z-10 border max-h-24 overflow-y-auto ${open ? '' : 'hidden'}`}>
                 {props.options.map(item => 
-                    (<div key={item.key} onClick={() => handleSelectCategory(item)} className="items px-3 py-1 border-b hover:bg-gray-100 cursor-pointer">
+                    (
+                    <div key={item.key} onClick={() => handleSelectCategory(item)} className="items px-3 py-1 border-b hover:bg-gray-100 cursor-pointer">
                     {item.value}
                     </div>
                 ))}
+                 {/* <div key="d" onClick={() => handleSelectCategory({key: '', value: ''})} className="items px-3 py-1 border-b hover:bg-gray-100 cursor-pointer">
+                  Uncategorised
+                  </div> */}
               </div>}
         </div>
     </div>

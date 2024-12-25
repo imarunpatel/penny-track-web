@@ -1,14 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react'
+import { formateDateToYYYYMMDD } from '../../../utils/helpers/dateFormate';
 
 interface Props {
     onSelect: (date: string) => void
 }
 const HorizantalDatePicker: React.FC<Props> = (props) => {
     const containerRef = useRef<HTMLDivElement>(null)
-    const [currentDate, setCurrentDate] = useState<string>(new Date().toISOString().split('T')[0]);
+    const [currentDate, setCurrentDate] = useState<string>(formateDateToYYYYMMDD(new Date()));
 
     const dates = generateNextLast15Days();
-
 
     useEffect(() => {
         const currentIndex = dates.indexOf(currentDate);

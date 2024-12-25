@@ -124,7 +124,7 @@ const Home = () => {
                   <div className="details h-full w-full flex justify-between relative">
                     <div className="left">
                       <div className="text-lg">{item.title}</div>
-                      <div className="text-gray-400 text-sm">{item.categoryId?.name}</div>
+                      <div className="text-gray-400 text-sm">{item.categoryId?.name ? item.categoryId?.name : 'Uncategorised' }</div>
                     </div>
                     <div className="right flex items-center">
                       <div>

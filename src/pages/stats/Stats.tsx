@@ -3,11 +3,8 @@ import { ChartData, ChartOptions } from "chart.js";
 import { ChartBarIcon } from "@heroicons/react/24/outline";
 import useExpenseStore from "../../store/expenseStore";
 import { daysInThisMonth, formateToYearMonth } from "../../utils/helpers/dateFormate";
+import CategoryIcon from "../../assets/icons/categories.png";
 
-
-const emojis = ['😁', '🙂', '🫠', '😊', '😇', '🥰', '😀','😍', '😃', "💸", "🍕", "🛒", "🚗", "🏠", "📱", "🛏️", "✈️", "🎓", "🍽️", 
-  "☕", "🎉", "💡", "🔧", "🏥", "🏋️", "🎮", "🚴‍♂️", "💻", "🎁", 
-  "🎵", "💼", "🌟", "🛠️", "💐", "🥦", "🍔", "🎨", "📚"];
 
 const Stats = () => {
   const { stats } = useExpenseStore();
@@ -18,8 +15,7 @@ const Stats = () => {
 
   let categoryExpense: {[key: string]: number}  = {};
 
-  // ===== Find Categorywise Expense ====-
-  // const currentMonthExpense = expenses?.get(formateToYearMonth(new Date()))
+  let today = new Date().toLocaleDateString('default', { month: 'long' });
 
   if(currentStats) {
     Object.keys(currentStats).forEach(item => {
@@ -31,6 +27,7 @@ const Stats = () => {
       statsMap.set(item.split('-')[2], value);
     })
   }
+
 
   const expenseData = Array.from({length: daysInThisMonth()}, (_, i) => {
     let index = String(i+1).padStart(2, '0');
@@ -116,14 +113,14 @@ const Stats = () => {
             <Line data={data} options={options} />
           </div>
           <div className="px-3">
-            <div className="mt-2">October Expenses</div>
+            <div className="mt-2">{today} Expenses</div>
             <div className="flex gap-2 flex-wrap">
 
             {
               Object.keys(categoryExpense).map(item => (
                 <div key={item} className="p-2 bg-gray-100 flex rounded-md flex-1 min-w-40">
                   <div className="left px-2 text-4xl flex items-center">
-                    {emojis[Math.floor(Math.random() * emojis.length)]}
+                    <img src={CategoryIcon} alt="" className="w-10" />
                   </div>  
                   <div className="right flex-1 px-2 flex flex-col items-end">
                     <div>{item.split('$')[1]}</div>

@@ -7,6 +7,7 @@ interface CategoryStoreState {
     setAllCategory: (payload: ICategory[]) => void;
     addCategory: (payload: ICategory) => void;
     deleteCategory: (id: string) => void;
+    clearCategory: () => void;
 }
 
 
@@ -24,8 +25,8 @@ const useCategoryStore = create<CategoryStoreState>((set) => ({
         const categories = state.categories;
         const updatedCategories = categories?.filter(item => item.id !== id);
         return { categories: updatedCategories }
-    })
-
+    }),
+    clearCategory: () => set({categories: null})
 }))
 
 
