@@ -3,7 +3,7 @@ interface IAPIBaseResponse {
     code: number
 }
 
-interface IAPISuccessResponse<DType = any> extends IAPIBaseResponse {
+interface IAPISuccessResponse<DType = unknown> extends IAPIBaseResponse {
     success: true
     data: DType
 }

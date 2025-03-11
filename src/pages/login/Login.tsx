@@ -30,7 +30,7 @@ const Login = () => {
         setLoading(false);
         navigate("/home");
       }
-    } catch (err) {
+    } catch {
       setLoading(false);
     }
   };

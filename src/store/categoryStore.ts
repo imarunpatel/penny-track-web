@@ -15,7 +15,7 @@ const useCategoryStore = create<CategoryStoreState>((set) => ({
     categories: null,
     setAllCategory: (categories: ICategory[]) => set({categories}),
     addCategory: (category: ICategory) => set((state) => {
-        let updatedCateogry = state.categories;
+        const updatedCateogry = state.categories;
         if(updatedCateogry) {
             updatedCateogry.push(category);
         }

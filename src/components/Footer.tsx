@@ -6,6 +6,9 @@ import { useCategoryStore } from "../store";
 import { Link, useLocation } from "react-router-dom";
 import { AuthAPI } from "../apis/authAPI";
 import AddExpense from "./AddUpdateExpense";
+import toast from "react-simple-toasts";
+import useExpenseStore from "../store/expenseStore";
+import { formateToYearMonth } from "../utils/helpers/dateFormate";
 
 const MenuIcons = [
     <HomeIcon key="Home" className="w-6" />,
@@ -15,17 +18,35 @@ const MenuIcons = [
 ]
 
 const Footer = () => {
-    const { categories } = useCategoryStore()
+    const { categories } = useCategoryStore();
+    const { stats } = useExpenseStore();
     const [isOpen, setIsOpen] = useState(false);
     const avatar = AuthAPI.getUser().avatar;
     const location = useLocation();
+
+
+    const currentMonth = formateToYearMonth(new Date());
+    const selectedStats = stats?.get(currentMonth);
+    
+    console.log(selectedStats?.budgetSet)
+
+    const handleOpen = () => {
+        if(!selectedStats?.budgetSet) {
+            toast('Please set monthly budget first 💲', {
+                className: "bg-sky-700",
+                position: 'center'
+            })
+            return;
+        }
+        setIsOpen(true);
+    }
 
     return (
         <footer className="fixed bottom-0 w-full bg-white">
             <div className="flex border-t-2 max-w-lg mx-auto">
                 <MenuItem active={location.pathname === '/home'} to="home" icon={MenuIcons[0]} />
                 <MenuItem active={location.pathname === '/stats'} to="stats" icon={MenuIcons[1]} />
-                <div className="flex-1 mx-3 flex items-center justify-center" onClick={() => setIsOpen(true)}>
+                <div className="flex-1 mx-3 flex items-center justify-center" onClick={() => handleOpen()}>
                     <div className="bg-violet-800 rounded-full flex items-center justify-center p-2 text-white">
                         <PlusIcon className="w-10" />
                     </div>

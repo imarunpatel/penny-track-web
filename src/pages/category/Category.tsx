@@ -30,9 +30,7 @@ const Category = () => {
             deleteCategory(id);
             getMonthlyExpense(formateToYearMonth(new Date()))
         }
-    } catch (e) {
-
-    } finally {
+    } catch { /* empty */ } finally {
         setLoading(false);
     }
   }

@@ -30,9 +30,7 @@ const AddCategory: FC<Props> = (props) => {
             props.setIsOpen(false);
             setCategoryName("")
         }
-    } catch (e){
-    
-    } finally {
+    } catch { /* empty */ } finally {
         setLoading(false);
     }
   };
@@ -45,6 +43,7 @@ const AddCategory: FC<Props> = (props) => {
         initialSnap={0}
         onClose={() => props.setIsOpen(false)}
         disableScrollLocking={true}
+        className="max-w-lg mx-auto"
       >
         <Sheet.Container>
           <Sheet.Header />

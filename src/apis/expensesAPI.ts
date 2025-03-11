@@ -59,7 +59,7 @@ export const ExpensesAPI = {
         })
         return response.data as IAPIResponse<IMonthlyStats>
     },
-    createBudget: async (budget: {}) => {
+    createBudget: async (budget: object) => {
         const response = await api.request({
             url: `/expense/budget`,
             method: 'post',

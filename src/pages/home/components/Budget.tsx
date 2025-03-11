@@ -14,7 +14,7 @@ const Budget = () => {
     const [loading, setLoading] = useState<boolean>(false);
     const [type, setType] = useState<'Set' | 'Update'>();
     const [statsLoading, setStatsLoading] = useState<boolean>(true);
-    let today = new Date().toLocaleDateString('default', { month: 'long' })
+    const today = new Date().toLocaleDateString('default', { month: 'long' })
     let totalExpense = null;
     let balance = null;
     let budget = null;
@@ -24,8 +24,8 @@ const Budget = () => {
     const selectedStats = stats?.get(currentMonth);
 
     if(selectedStats) {
-
-        let data: {category: ICategory; expense: number }[] = [];
+      const data: {category: ICategory; expense: number }[] = [];
+      console.log('da', selectedStats.stats, data)
         Object.values(selectedStats.stats).forEach(item => {
           data.push(...item)
         })
@@ -37,8 +37,7 @@ const Budget = () => {
     }
 
     useEffect(() => {
-      if(!stats) {
-      } else {
+      if(!stats) { /* empty */ } else {
         setStatsLoading(false);
       }
     }, [stats])
@@ -63,8 +62,7 @@ const Budget = () => {
             updateBudget(yearMonth, budget)
           }
         }
-      } catch(e: any) {
-      } finally {
+      } catch { /* empty */ } finally {
         setLoading(false);
         setIsOpen(false);
       }
@@ -87,7 +85,8 @@ const Budget = () => {
     }
   
     function closeModal() {
-      setIsOpen(false)
+      setIsOpen(false);
+      setBudgetError(false);
     }
 
   
@@ -157,6 +156,7 @@ const Budget = () => {
                   `text-lg mt-3 block w-full rounded-lg ${budgetError ? 'border-red-600': ''}  border bg-black/5 py-1.5 px-3 text-black',
                   'focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25`
                 )} disabled={loading}
+                placeholder="Enter amount. eg: 10000"
               />
               <div className="w-full flex justify-end mt-4">
                 <Button

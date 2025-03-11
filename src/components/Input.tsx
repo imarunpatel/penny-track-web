@@ -20,7 +20,6 @@ const Input: React.FC<InputProps> = ({
   onChange,
   placeholder = "",
   type = "text",
-  error,
   showError = false,
   className = "",
   required = false,

@@ -3,6 +3,10 @@ import Footer from '../components/Footer'
 import { formateToYearMonth } from '../utils/helpers/dateFormate';
 import { useEffect } from 'react';
 import { useMonthlyExpense } from '../hooks/useMonthlyExpense';
+import 'react-simple-toasts/dist/theme/dark.css';
+import { toastConfig } from 'react-simple-toasts';
+
+toastConfig({ theme: 'dark' });
 
 const MainLayout = () => {
   const location = useLocation();

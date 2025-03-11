@@ -13,14 +13,14 @@ const Stats = () => {
   const currentStats = stats?.get(yearMonth)?.stats
   const statsMap = new Map();
 
-  let categoryExpense: {[key: string]: number}  = {};
+  const categoryExpense: {[key: string]: number}  = {};
 
-  let today = new Date().toLocaleDateString('default', { month: 'long' });
+  const today = new Date().toLocaleDateString('default', { month: 'long' });
 
   if(currentStats) {
     Object.keys(currentStats).forEach(item => {
       currentStats[item].forEach(expense => {
-        let key = expense.category.id + '$' + expense.category.name
+        const key = expense.category.id + '$' + expense.category.name
         categoryExpense[key] = (categoryExpense[key] || 0) + expense.expense
       })
       const value = currentStats[item].reduce((acc, curr) => acc + curr.expense, 0);
@@ -30,7 +30,7 @@ const Stats = () => {
 
 
   const expenseData = Array.from({length: daysInThisMonth()}, (_, i) => {
-    let index = String(i+1).padStart(2, '0');
+    const index = String(i+1).padStart(2, '0');
     return (statsMap.get(index) || 0)
   })
 

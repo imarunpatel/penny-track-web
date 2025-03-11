@@ -12,24 +12,10 @@ const Todo = () => {
                 <div>Today's Task</div>
                 <div><input type="date" /></div>
             </div>
-            <div className="bg-gray-200 flex gap-2 items-center px-3 py-3 rounded-md mb-2">
-                {/* <div className="left"> */}
-                    <input type="checkbox"  className="text-lg w-4 h-4"  />
-                {/* </div> */}
-                <div className="right text-gray-700">
-                    Comple the project for todo list slfjsd lksdjf lsf sdl fs
-                </div>
-            </div>
 
-            <div className="bg-gray-200 flex gap-2 items-center px-3 py-3 rounded-md mb-2">
-                {/* <div className="left"> */}
-                    <input type="checkbox"  className="text-lg w-4 h-4"  />
-                {/* </div> */}
-                <div className="right text-gray-400 line-through">
-                    Comple the project for todo list slfjsd lksdjf lsf sdl fs
-                </div>
+            <div className="flex justify-center items-center font-bold text-neutral-400 min-h-40">
+                Under Construction 🛠️ 
             </div>
-
         </main>
     </div>
   )

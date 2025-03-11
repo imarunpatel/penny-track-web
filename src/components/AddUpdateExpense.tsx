@@ -60,14 +60,14 @@ const AddUpdateExpense = ({ isOpen, setIsOpen, categories, type, expense }: Bott
         setFormData(initialFormValue);
       }
     }
-  }, [type, isOpen]);
+  }, [type, isOpen, expense]);
 
   const handleOnChange = (
     event: ChangeEvent<
       HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
     >
   ) => {
-    const { id, value }: any = event.target;
+    const { id, value } = event.target;
     const updatedData = { ...formData, [id]: value };
     setFormData(updatedData);
     validateExpenseForm(updatedData);
@@ -88,7 +88,7 @@ const AddUpdateExpense = ({ isOpen, setIsOpen, categories, type, expense }: Bott
     if (validateExpenseForm(formData)) {
       setLoading(true);
       try {
-        let formValues: Omit<IExpense, "id"> = {
+        const formValues: Omit<IExpense, "id"> = {
           ...formData,
           amount: +formData.amount!,
           date: formateDateToYYYYMMDD(formData.date),
@@ -129,10 +129,9 @@ const AddUpdateExpense = ({ isOpen, setIsOpen, categories, type, expense }: Bott
         setFormData(initialState);
         setFormSubmitted(false);
         setIsOpen(false);
-      } catch (e) {
+      } catch  {
         setLoading(false);
       }
-    } else {
     }
   };
 
@@ -166,6 +165,7 @@ const AddUpdateExpense = ({ isOpen, setIsOpen, categories, type, expense }: Bott
       onClose={() => setIsOpen(false)}
       snapPoints={modifiedCategory.length > 0 ? [410] : [180]}
       initialSnap={0}
+      className="max-w-lg mx-auto"
     >
       <Sheet.Container>
         <Sheet.Header />

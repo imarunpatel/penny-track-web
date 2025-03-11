@@ -24,6 +24,7 @@ api.interceptors.response.use(
     }
 )
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const handlePromiseError = (error: AxiosError | any)  => {
     // if(error.response?.data)
     toast(error.response?.data.error || 'Something went wrong!')

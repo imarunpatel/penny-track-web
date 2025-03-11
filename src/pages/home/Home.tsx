@@ -40,8 +40,8 @@ const Home = () => {
   const handleDateChagne = async (value:  string | null, from: 'calendar' | 'horizontal') => {
     if(!value) return;
     const date = from === 'calendar' ? value.split('T')[0] : value;
-
     setSelectedDate(date)
+    console.log(expenses)
     const existingExpense = expenses!.get(date);
     if(existingExpense) {
       return;
@@ -57,7 +57,7 @@ const Home = () => {
         addExpenses(date, modifiedExpenses? modifiedExpenses : []);
         setLoading(false);
       };
-    } catch(e) {
+    } catch {
       setLoading(false);
     }
   }
@@ -72,7 +72,7 @@ const Home = () => {
           toast('Deleted successfully');
           setLoading(false);
         }
-      } catch (e) {
+      } catch {
         setLoading(false);
       }
     }
