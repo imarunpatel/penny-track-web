@@ -8,12 +8,19 @@ import Profile from "../pages/profile/Profile";
 import Protected from "./Protected";
 import Category from "../pages/category/Category";
 import Todo from "../pages/todo/Todo";
+import AuthLayout from "../layouts/AuthLayout";
 
 
 const router = createBrowserRouter([
     {
         path: 'login',
-        element: <Login />
+        element: <AuthLayout />,
+        children: [
+            {
+                path: '',
+                element: <Login />
+            }
+        ]
     },
     {
         path: '',
