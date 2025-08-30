@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import { useMonthlyExpense } from '../hooks/useMonthlyExpense';
 import 'react-simple-toasts/dist/theme/dark.css';
 import { toastConfig } from 'react-simple-toasts';
+import { IonApp, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/react';
 
 toastConfig({ theme: 'dark' });
 
@@ -18,10 +19,18 @@ const MainLayout = () => {
 
   
   return (
-    <div>
+      <IonApp>
+        <IonHeader>
+        <IonToolbar color="primary">
+          <IonTitle>Penny Track</IonTitle>
+        </IonToolbar>
+      </IonHeader>
+
+      <IonContent className="ion-padding">
         <Outlet />
         {location.pathname !== '/' ? <Footer key={1} /> : null}
-    </div>
+      </IonContent>
+      </IonApp>
   )
 }
 
